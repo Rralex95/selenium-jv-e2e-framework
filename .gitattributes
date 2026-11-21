@@ -1,1 +1,2 @@
-src/test/resources/ExtentReport/** linguist-vendored
+src/test/resources/ExtentReport/* linguist-generated=true
+
