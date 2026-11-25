@@ -11,12 +11,13 @@ public class DummyClass extends BaseClass {
 	@Test
 	public void dummyTest() {
 		
-		ExtentManager.starTest("DummyTest1 Test");
+		//ExtentManager.starTest("DummyTest1 Test"); -- This has been implemented in TestListener
 		String title = getDriver().getTitle();
 		ExtentManager.logStep("verifying the title");
 		assert title.equals("OrangeHRM"): "Test Failed - Title is Not Matching";
-		ExtentManager.logSkip("This case is skipped");
+		
 		System.out.println("Test Passed - Title is Matching");
+		//ExtentManager.logSkip("This case is skipped");
 		throw new SkipException("Skipping the test as part of Testing");
 		
 	}

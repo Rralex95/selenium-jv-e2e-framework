@@ -1,3 +1,12 @@
 /target/
 test-output/
 logs/
+
+# Reportes y capturas generadas
+src/test/resources/ExtentReport/
+src/test/resources/screenshots/
+
+# Archivos locales de Eclipse
+.settings/
+.classpath
+.project

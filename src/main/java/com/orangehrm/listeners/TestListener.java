@@ -4,32 +4,43 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import com.orangehrm.base.BaseClass;
 import com.orangehrm.utilities.ExtentManager;
 
 public class TestListener implements ITestListener {
 
+	//Triggered when a test starts
 	@Override
 	public void onTestStart(ITestResult result) {
-		// TODO Auto-generated method stub
-		ITestListener.super.onTestStart(result);
+		String testName = result.getMethod().getMethodName();
+		//Start logging in Extent Reports
+		ExtentManager.starTest(testName);
+		ExtentManager.logStep("Test Started: "+testName);
+
 	}
 
+	//Triggered when a Test success
 	@Override
 	public void onTestSuccess(ITestResult result) {
-		// TODO Auto-generated method stub
-		ITestListener.super.onTestSuccess(result);
+		String testName = result.getMethod().getMethodName();
+		ExtentManager.logStepWithScreenshot(BaseClass.getDriver(), "Test Passed Succesfully!", "Test End: " + testName + " - ✔ Test Passed");
+
 	}
 
+	//Triggered when a Test Fails
 	@Override
 	public void onTestFailure(ITestResult result) {
-		// TODO Auto-generated method stub
-		ITestListener.super.onTestFailure(result);
+		String testName = result.getMethod().getMethodName();
+		String failureMessage = result.getThrowable().getMessage();
+		ExtentManager.logStep(failureMessage);
+		ExtentManager.logFailure(BaseClass.getDriver(), "Test Failed!", "Test End: " + testName + " - ❌ Test Failed");
 	}
 
+	//Triggered when a Test skips
 	@Override
 	public void onTestSkipped(ITestResult result) {
-		// TODO Auto-generated method stub
-		ITestListener.super.onTestSkipped(result);
+		String testName = result.getMethod().getMethodName();
+		ExtentManager.logSkip("Test Skipped" + testName);
 	}
 
 	//Triggered when a suite Starts
